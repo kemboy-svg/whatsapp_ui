@@ -30,7 +30,7 @@ class ContactsList extends ConsumerWidget {
                     itemCount: snapshot.data!.length,
                     itemBuilder: (context, index) {
                       var groupData = snapshot.data![index];
-
+                      print('Contacts${snapshot.data}');
                       return Column(
                         children: [
                           InkWell(

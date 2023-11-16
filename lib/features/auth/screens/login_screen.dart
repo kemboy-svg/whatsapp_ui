@@ -36,13 +36,18 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
   void sendPhoneNumber() {
     String phoneNumber = phoneController.text.trim();
-    if (country != null && phoneNumber.isNotEmpty) {
+    try {
+       if (country != null && phoneNumber.isNotEmpty) {
       ref
           .read(authControllerProvider)
           .signInWithPhone(context, '+${country!.phoneCode}$phoneNumber');
     } else {
       showSnackBar(context: context, content: 'Fill out all the fields');
     }
+    } catch (e) {
+      print('This is error while sending OTP error${e.toString()}');
+    }
+   
   }
 
   @override
