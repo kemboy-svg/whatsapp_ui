@@ -23,7 +23,7 @@ class SelectContactRepository {
     List<Contact> contacts = [];
     try {
       if (await FlutterContacts.requestPermission()) {
-        contacts = await FlutterContacts.getContacts(withProperties: true);
+        contacts = await FlutterContacts.getContacts(withProperties: true)?? [];
       }
     } catch (e) {
       debugPrint(e.toString());
@@ -38,22 +38,26 @@ class SelectContactRepository {
 
       for (var document in userCollection.docs) {
         var userData = UserModel.fromMap(document.data());
-        String selectedPhoneNum = selectedContact.phones[0].number.replaceAll(
-          ' ',
-          '',
-        );
+      String selectedPhoneNum = selectedContact.phones[0].number.replaceAll(
+        ' ',
+        '',
+      );
+      try {
         if (selectedPhoneNum == userData.phoneNumber) {
-          isFound = true;
-          Navigator.pushNamed(
-            context,
-            MobileChatScreen.routeName,
-            arguments: {
-              'name': userData.name,
-              'uid': userData.uid,
-            },
-          );
-        }
+        isFound = true;
+        Navigator.pushNamed(
+          context,
+          MobileChatScreen.routeName,
+          arguments: {
+            'name': userData.name,
+            'uid': userData.uid,
+          },
+        );
       }
+      } catch (e) {
+        print("Error while selecting contact to chat${e.toString()}");
+      }
+            }
 
       if (!isFound) {
         showSnackBar(
