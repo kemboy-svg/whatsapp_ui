@@ -22,11 +22,15 @@ class SelectContactRepository {
   Future<List<Contact>> getContacts() async {
     List<Contact> contacts = [];
     try {
-      if (await FlutterContacts.requestPermission()) {
-        contacts = await FlutterContacts.getContacts(withProperties: true)?? [];
-      }
+       // Ensure that the permission request is not null
+    bool hasPermission = await FlutterContacts.requestPermission();
+    
+    if (hasPermission) {
+      // Ensure that the result of getContacts is not null
+      contacts = await FlutterContacts.getContacts(withProperties: true);
+    }
     } catch (e) {
-      debugPrint(e.toString());
+      debugPrint(e.toString()); 
     }
     return contacts;
   }
@@ -34,7 +38,7 @@ class SelectContactRepository {
   void selectContact(Contact selectedContact, BuildContext context) async {
     try {
       var userCollection = await firestore.collection('users').get();
-      bool isFound = false;
+       bool isFound = false;
 
       for (var document in userCollection.docs) {
         var userData = UserModel.fromMap(document.data());
@@ -59,7 +63,7 @@ class SelectContactRepository {
       }
             }
 
-      if (!isFound) {
+      if (isFound==false) {
         showSnackBar(
           context: context,
           content: 'This number does not exist on this app.',

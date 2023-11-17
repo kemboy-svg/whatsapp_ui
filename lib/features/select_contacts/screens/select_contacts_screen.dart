@@ -23,7 +23,15 @@ class SelectContactsScreen extends ConsumerWidget {
         title: const Text('Select contact'),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              showSearch(
+                context: context,
+                delegate: ContactSearchDelegate(
+                  ref,
+                  (contact, context) => selectContact(ref, contact, context),
+                ),
+              );
+            },
             icon: const Icon(
               Icons.search,
             ),
@@ -65,6 +73,80 @@ class SelectContactsScreen extends ConsumerWidget {
             error: (err, trace) => ErrorScreen(error: err.toString()),
             loading: () => const Loader(),
           ),
+    );
+  }
+}
+
+class ContactSearchDelegate extends SearchDelegate<Contact> {
+  final WidgetRef ref;
+  final Function(Contact, BuildContext) selectContactCallback;
+
+  ContactSearchDelegate(this.ref, this.selectContactCallback);
+
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    return [
+      IconButton(
+        icon: const Icon(Icons.clear),
+        onPressed: () {
+          query = '';
+        },
+      ),
+    ];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    return IconButton(
+      icon: const Icon(Icons.arrow_back),
+      onPressed: () {
+        close(context, Contact());
+      },
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    return buildSearchResults(context);
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    return buildSearchResults(context);
+  }
+
+  Widget buildSearchResults(BuildContext context) {
+    final contactList = ref.watch(getContactsProvider);
+
+    return contactList.when(
+      data: (contacts) {
+        final filteredContacts = contacts
+            .where((contact) =>
+                contact.displayName.toLowerCase().contains(query.toLowerCase()))
+            .toList();
+
+        return ListView.builder(
+          itemCount: filteredContacts.length,
+          itemBuilder: (context, index) {
+            final contact = filteredContacts[index];
+            return InkWell(
+              onTap: () => selectContactCallback(contact, context),
+              child: ListTile(
+                title: Text(contact.displayName),
+                onTap: () {
+                  close(context, contact);
+                  ref.read(selectContactControllerProvider).selectContact(
+                        contact,
+                        context,
+                      );
+                },
+              ),
+            );
+          },
+        );
+      },
+      error: (err, trace) => ErrorScreen(error: err.toString()),
+      loading: () => const Loader(),
     );
   }
 }

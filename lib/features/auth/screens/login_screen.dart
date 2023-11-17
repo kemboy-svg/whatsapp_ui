@@ -8,6 +8,7 @@ import 'package:whatsapp_ui/features/auth/controller/auth_controller.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   static const routeName = '/login-screen';
+
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
@@ -16,6 +17,7 @@ class LoginScreen extends ConsumerStatefulWidget {
 
 class _LoginScreenState extends ConsumerState<LoginScreen> {
   final phoneController = TextEditingController();
+  bool _isLoading = false;
   Country? country;
 
   @override
@@ -37,17 +39,23 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   void sendPhoneNumber() {
     String phoneNumber = phoneController.text.trim();
     try {
-       if (country != null && phoneNumber.isNotEmpty) {
-      ref
-          .read(authControllerProvider)
-          .signInWithPhone(context, '+${country!.phoneCode}$phoneNumber');
-    } else {
-      showSnackBar(context: context, content: 'Fill out all the fields');
-    }
+      setState(() {
+        _isLoading = true;
+      });
+      if (country != null && phoneNumber.isNotEmpty) {
+        ref
+            .read(authControllerProvider)
+            .signInWithPhone(context, '+${country!.phoneCode}$phoneNumber');
+        setState(() {
+          _isLoading = false;
+        });
+      } else {
+        showSnackBar(context: context, content: 'Fill out all the fields');
+      }
     } catch (e) {
+      _isLoading = false;
       print('This is error while sending OTP error${e.toString()}');
     }
-   
   }
 
   @override
@@ -92,8 +100,15 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               SizedBox(
                 width: 90,
                 child: CustomButton(
-                  onPressed: sendPhoneNumber,
-                  text: 'NEXT',
+                  onPressed: () {
+                    if (!_isLoading) {
+                      setState(() {
+                        _isLoading = true;
+                      });
+                      sendPhoneNumber();
+                    }
+                  },
+                  text: _isLoading ? 'LOADING...' : 'NEXT',
                 ),
               ),
             ],
