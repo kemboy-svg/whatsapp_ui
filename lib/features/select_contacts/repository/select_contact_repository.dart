@@ -22,15 +22,15 @@ class SelectContactRepository {
   Future<List<Contact>> getContacts() async {
     List<Contact> contacts = [];
     try {
-       // Ensure that the permission request is not null
-    bool hasPermission = await FlutterContacts.requestPermission();
-    
-    if (hasPermission) {
-      // Ensure that the result of getContacts is not null
-      contacts = await FlutterContacts.getContacts(withProperties: true);
-    }
+      // Ensure that the permission request is not null
+      bool hasPermission = await FlutterContacts.requestPermission();
+
+      if (hasPermission) {
+        // Ensure that the result of getContacts is not null
+        contacts = await FlutterContacts.getContacts(withProperties: true);
+      }
     } catch (e) {
-      debugPrint(e.toString()); 
+      debugPrint(e.toString());
     }
     return contacts;
   }
@@ -38,32 +38,36 @@ class SelectContactRepository {
   void selectContact(Contact selectedContact, BuildContext context) async {
     try {
       var userCollection = await firestore.collection('users').get();
-       bool isFound = false;
+      bool isFound = false;
 
       for (var document in userCollection.docs) {
         var userData = UserModel.fromMap(document.data());
-      String selectedPhoneNum = selectedContact.phones[0].number.replaceAll(
-        ' ',
-        '',
-      );
-      try {
-        if (selectedPhoneNum == userData.phoneNumber) {
-        isFound = true;
-        Navigator.pushNamed(
-          context,
-          MobileChatScreen.routeName,
-          arguments: {
-            'name': userData.name,
-            'uid': userData.uid,
-          },
-        );
-      }
-      } catch (e) {
-        print("Error while selecting contact to chat${e.toString()}");
-      }
-            }
+        print("UserData${document}");
 
-      if (isFound==false) {
+        String selectedPhoneNum = selectedContact.phones[0].number.replaceAll(
+          ' ',
+          '',
+        );
+
+        String formattedPhoneNumber = '+254$selectedPhoneNum';
+        try {
+          if (formattedPhoneNumber == userData.phoneNumber) {
+            isFound = true;
+            Navigator.pushNamed(
+              context,
+              MobileChatScreen.routeName,
+              arguments: {
+                'name': userData.name,
+                'uid': userData.uid,
+              },
+            );
+          }
+        } catch (e) {
+          print("Error while selecting contact to chat${e.toString()}");
+        }
+      }
+
+      if (isFound == false) {
         showSnackBar(
           context: context,
           content: 'This number does not exist on this app.',
