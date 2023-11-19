@@ -10,7 +10,7 @@ import 'package:whatsapp_ui/models/group.dart';
 
 class ContactsList extends ConsumerWidget {
   const ContactsList({Key? key}) : super(key: key);
-
+ 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Padding(

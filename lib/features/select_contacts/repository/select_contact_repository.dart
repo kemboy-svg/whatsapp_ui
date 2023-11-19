@@ -49,9 +49,9 @@ class SelectContactRepository {
           '',
         );
 
-        String formattedPhoneNumber = '+254$selectedPhoneNum';
+        
         try {
-          if (formattedPhoneNumber == userData.phoneNumber) {
+          if (selectedPhoneNum == userData.phoneNumber) {
             isFound = true;
             Navigator.pushNamed(
               context,

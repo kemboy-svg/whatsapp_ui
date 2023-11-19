@@ -6,6 +6,7 @@ import 'package:whatsapp_ui/features/auth/controller/auth_controller.dart';
 import 'package:whatsapp_ui/features/call/controller/call_controller.dart';
 import 'package:whatsapp_ui/features/call/screens/call_pickup_screen.dart';
 import 'package:whatsapp_ui/features/chat/widgets/bottom_chat_field.dart';
+import 'package:whatsapp_ui/features/group/screens/display_groupUsers.dart';
 import 'package:whatsapp_ui/models/user_model.dart';
 import 'package:whatsapp_ui/features/chat/widgets/chat_list.dart';
 
@@ -14,13 +15,15 @@ class MobileChatScreen extends ConsumerWidget {
   final String name;
   final String uid;
   final bool isGroupChat;
-  final String profilePic;
+  final String profilePic ;
+  
   const MobileChatScreen({
     Key? key,
     required this.name,
     required this.uid,
     required this.isGroupChat,
     required this.profilePic,
+    
   }) : super(key: key);
 
   void makeCall(WidgetRef ref, BuildContext context) {
@@ -49,7 +52,13 @@ class MobileChatScreen extends ConsumerWidget {
                     }
                     return Column(
                       children: [
-                        Text(name),
+                        InkWell(
+                            onTap: () => Navigator.pushNamed(
+                                  context,
+                                  GroupUsersSreen.routeName,
+                                  arguments: {'groupId': uid},
+                                ),
+                            child: Text(name)),
                         Text(
                           snapshot.data!.isOnline ? 'online' : 'offline',
                           style: const TextStyle(
@@ -67,11 +76,17 @@ class MobileChatScreen extends ConsumerWidget {
               icon: const Icon(Icons.video_call),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: (){},
+             
               icon: const Icon(Icons.call),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () => Navigator.pushNamed(
+                context,
+                GroupUsersSreen.routeName,
+                arguments: {'groupId': uid, 'profilePic': profilePic, 'name':name},
+                
+              ),
               icon: const Icon(Icons.more_vert),
             ),
           ],
