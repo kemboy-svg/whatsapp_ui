@@ -1,16 +1,16 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:whatsapp_ui/common/widgets/error.dart';
-import 'package:whatsapp_ui/features/auth/screens/login_screen.dart';
-import 'package:whatsapp_ui/features/auth/screens/otp_screen.dart';
-import 'package:whatsapp_ui/features/auth/screens/user_information_screen.dart';
-import 'package:whatsapp_ui/features/group/screens/create_group_screen.dart';
-import 'package:whatsapp_ui/features/select_contacts/screens/select_contacts_screen.dart';
-import 'package:whatsapp_ui/features/chat/screens/mobile_chat_screen.dart';
-import 'package:whatsapp_ui/features/status/screens/confirm_status_screen.dart';
-import 'package:whatsapp_ui/features/status/screens/status_screen.dart';
-import 'package:whatsapp_ui/models/status_model.dart';
+import 'package:Teams/common/widgets/error.dart';
+import 'package:Teams/features/auth/screens/login_screen.dart';
+import 'package:Teams/features/auth/screens/otp_screen.dart';
+import 'package:Teams/features/auth/screens/user_information_screen.dart';
+import 'package:Teams/features/group/screens/create_group_screen.dart';
+import 'package:Teams/features/select_contacts/screens/select_contacts_screen.dart';
+import 'package:Teams/features/chat/screens/mobile_chat_screen.dart';
+import 'package:Teams/features/status/screens/confirm_status_screen.dart';
+import 'package:Teams/features/status/screens/status_screen.dart';
+import 'package:Teams/models/status_model.dart';
 
 import 'features/group/screens/display_groupUsers.dart';
 

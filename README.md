@@ -1,4 +1,4 @@
-# whatsapp_ui
+# Teams
 
 A new Flutter project.
 

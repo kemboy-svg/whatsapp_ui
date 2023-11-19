@@ -7,10 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uuid/uuid.dart';
-import 'package:whatsapp_ui/common/repositories/common_firebase_storage_repository.dart';
-import 'package:whatsapp_ui/common/utils/utils.dart';
-import 'package:whatsapp_ui/models/status_model.dart';
-import 'package:whatsapp_ui/models/user_model.dart';
+import 'package:Teams/common/repositories/common_firebase_storage_repository.dart';
+import 'package:Teams/common/utils/utils.dart';
+import 'package:Teams/models/status_model.dart';
+import 'package:Teams/models/user_model.dart';
 
 final statusRepositoryProvider = Provider(
   (ref) => StatusRepository(

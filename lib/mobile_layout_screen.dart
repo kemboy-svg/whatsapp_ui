@@ -1,14 +1,14 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:whatsapp_ui/common/utils/colors.dart';
-import 'package:whatsapp_ui/common/utils/utils.dart';
-import 'package:whatsapp_ui/features/auth/controller/auth_controller.dart';
-import 'package:whatsapp_ui/features/group/screens/create_group_screen.dart';
-import 'package:whatsapp_ui/features/select_contacts/screens/select_contacts_screen.dart';
-import 'package:whatsapp_ui/features/chat/widgets/contacts_list.dart';
-import 'package:whatsapp_ui/features/status/screens/confirm_status_screen.dart';
-import 'package:whatsapp_ui/features/status/screens/status_contacts_screen.dart';
+import 'package:Teams/common/utils/colors.dart';
+import 'package:Teams/common/utils/utils.dart';
+import 'package:Teams/features/auth/controller/auth_controller.dart';
+import 'package:Teams/features/group/screens/create_group_screen.dart';
+import 'package:Teams/features/select_contacts/screens/select_contacts_screen.dart';
+import 'package:Teams/features/chat/widgets/contacts_list.dart';
+import 'package:Teams/features/status/screens/confirm_status_screen.dart';
+import 'package:Teams/features/status/screens/status_contacts_screen.dart';
 
 class MobileLayoutScreen extends ConsumerStatefulWidget {
   const MobileLayoutScreen({Key? key}) : super(key: key);

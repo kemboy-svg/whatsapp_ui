@@ -1,10 +1,10 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:whatsapp_ui/common/utils/colors.dart';
-import 'package:whatsapp_ui/common/utils/utils.dart';
-import 'package:whatsapp_ui/common/widgets/custom_button.dart';
-import 'package:whatsapp_ui/features/auth/controller/auth_controller.dart';
+import 'package:Teams/common/utils/colors.dart';
+import 'package:Teams/common/utils/utils.dart';
+import 'package:Teams/common/widgets/custom_button.dart';
+import 'package:Teams/features/auth/controller/auth_controller.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   static const routeName = '/login-screen';

@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:whatsapp_ui/common/enums/message_enum.dart';
-import 'package:whatsapp_ui/common/providers/message_reply_provider.dart';
-import 'package:whatsapp_ui/common/widgets/loader.dart';
+import 'package:Teams/common/enums/message_enum.dart';
+import 'package:Teams/common/providers/message_reply_provider.dart';
+import 'package:Teams/common/widgets/loader.dart';
 
-import 'package:whatsapp_ui/features/chat/controller/chat_controller.dart';
-import 'package:whatsapp_ui/features/chat/widgets/my_message_card.dart';
-import 'package:whatsapp_ui/features/chat/widgets/sender_message_card.dart';
-import 'package:whatsapp_ui/models/message.dart';
+import 'package:Teams/features/chat/controller/chat_controller.dart';
+import 'package:Teams/features/chat/widgets/my_message_card.dart';
+import 'package:Teams/features/chat/widgets/sender_message_card.dart';
+import 'package:Teams/models/message.dart';
 
 class ChatList extends ConsumerStatefulWidget {
   final String recieverUserId;

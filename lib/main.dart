@@ -1,14 +1,14 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:whatsapp_ui/common/utils/colors.dart';
-import 'package:whatsapp_ui/common/widgets/error.dart';
-import 'package:whatsapp_ui/common/widgets/loader.dart';
-import 'package:whatsapp_ui/features/auth/controller/auth_controller.dart';
-import 'package:whatsapp_ui/features/landing/screens/landing_screen.dart';
-import 'package:whatsapp_ui/firebase_options.dart';
-import 'package:whatsapp_ui/router.dart';
-import 'package:whatsapp_ui/mobile_layout_screen.dart';
+import 'package:Teams/common/utils/colors.dart';
+import 'package:Teams/common/widgets/error.dart';
+import 'package:Teams/common/widgets/loader.dart';
+import 'package:Teams/features/auth/controller/auth_controller.dart';
+import 'package:Teams/features/landing/screens/landing_screen.dart';
+import 'package:Teams/firebase_options.dart';
+import 'package:Teams/router.dart';
+import 'package:Teams/mobile_layout_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,7 +31,7 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Whatsapp UI',
+      title: 'Teams',
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: backgroundColor,
         appBarTheme: const AppBarTheme(

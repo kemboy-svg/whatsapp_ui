@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:whatsapp_ui/features/call/controller/call_controller.dart';
-import 'package:whatsapp_ui/features/call/screens/call_screen.dart';
-import 'package:whatsapp_ui/models/call.dart';
+import 'package:Teams/features/call/controller/call_controller.dart';
+import 'package:Teams/features/call/screens/call_screen.dart';
+import 'package:Teams/models/call.dart';
 
 class CallPickupScreen extends ConsumerWidget {
   final Widget scaffold;

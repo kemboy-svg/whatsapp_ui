@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:whatsapp_ui/common/utils/colors.dart';
-import 'package:whatsapp_ui/common/widgets/custom_button.dart';
-import 'package:whatsapp_ui/features/auth/screens/login_screen.dart';
+import 'package:Teams/common/utils/colors.dart';
+import 'package:Teams/common/widgets/custom_button.dart';
+import 'package:Teams/features/auth/screens/login_screen.dart';
 
 class LandingScreen extends StatelessWidget {
   const LandingScreen({Key? key}) : super(key: key);
@@ -21,7 +21,7 @@ class LandingScreen extends StatelessWidget {
           children: [
             const SizedBox(height: 50),
             const Text(
-              'Welcome to WhatsApp',
+              'Welcome to TeamsApp',
               style: TextStyle(
                 fontSize: 33,
                 fontWeight: FontWeight.w600,

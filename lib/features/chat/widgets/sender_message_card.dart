@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:swipe_to/swipe_to.dart';
 
-import 'package:whatsapp_ui/common/utils/colors.dart';
-import 'package:whatsapp_ui/common/enums/message_enum.dart';
-import 'package:whatsapp_ui/features/chat/widgets/display_text_image_gif.dart';
+import 'package:Teams/common/utils/colors.dart';
+import 'package:Teams/common/enums/message_enum.dart';
+import 'package:Teams/features/chat/widgets/display_text_image_gif.dart';
 
 class SenderMessageCard extends StatelessWidget {
   const SenderMessageCard({

@@ -3,9 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uuid/uuid.dart';
-import 'package:whatsapp_ui/features/auth/controller/auth_controller.dart';
-import 'package:whatsapp_ui/features/call/repository/call_repository.dart';
-import 'package:whatsapp_ui/models/call.dart';
+import 'package:Teams/features/auth/controller/auth_controller.dart';
+import 'package:Teams/features/call/repository/call_repository.dart';
+import 'package:Teams/models/call.dart';
 
 final callControllerProvider = Provider((ref) {
   final callRepository = ref.read(callRepositoryProvider);
