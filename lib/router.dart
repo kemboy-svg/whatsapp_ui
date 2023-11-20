@@ -70,14 +70,14 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(
         builder: (context) => const CreateGroupScreen(),
       );
-    case GroupUsersSreen.routeName:
+    case GroupUsersScreen.routeName:
       final Map<String, dynamic> arguments =
           settings.arguments as Map<String, dynamic>;
       final String groupId = arguments['groupId'];
       final String profilePic=arguments['profilePic'];
        final  name =arguments['name'];
       return MaterialPageRoute(
-        builder: (context) => GroupUsersSreen(
+        builder: (context) => GroupUsersScreen(
           groupId: groupId, profilePic: profilePic, name: name,
         ),
       );

@@ -2,24 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../select_contacts/screens/select_contacts_screen.dart';
 
-
-class GroupUsersSreen extends ConsumerWidget {
+class GroupUsersScreen extends ConsumerStatefulWidget {
   final String groupId;
   final String profilePic;
   final String name;
+  
   static const String routeName = '/groupusers-screen';
-  GroupUsersSreen({
+
+  GroupUsersScreen({
     required this.groupId,
     required this.profilePic,
-    required this.name
+    required this.name,
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  _GroupUsersScreenState createState() => _GroupUsersScreenState();
+ 
+}
+
+class _GroupUsersScreenState extends ConsumerState<GroupUsersScreen> {
+   bool showGroupUsers = true;
+   
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(name),
+        title: Text(widget.name),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,7 +39,7 @@ class GroupUsersSreen extends ConsumerWidget {
             child: Center(
               child: CircleAvatar(
                 backgroundImage: NetworkImage(
-                  profilePic,
+                  widget.profilePic,
                 ),
                 radius: 60,
               ),
@@ -52,9 +62,11 @@ class GroupUsersSreen extends ConsumerWidget {
                 color: Colors.blue,
               ), // Add your desired icon here
               GestureDetector(
-                onTap:(){
-                 
-                } ,
+                onTap: () {
+                  setState(() {
+                  showGroupUsers = !showGroupUsers;
+                });
+                },
                 child: Text(
                   "Add participants",
                   style: TextStyle(color: Colors.blue),
@@ -62,11 +74,12 @@ class GroupUsersSreen extends ConsumerWidget {
               ),
             ],
           ),
+          if(showGroupUsers)
           Expanded(
             child: StreamBuilder(
               stream: FirebaseFirestore.instance
                   .collection('groups')
-                  .doc(groupId)
+                  .doc(widget.groupId)
                   .snapshots(),
               builder: (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
                 if (!snapshot.hasData || !snapshot.data!.exists) {
@@ -101,7 +114,8 @@ class GroupUsersSreen extends ConsumerWidget {
                               padding: const EdgeInsets.all(8.0),
                               child: ListTile(
                                 title: Text(users[index]['name']),
-                                subtitle: Text(users[index]['phoneNumber']),
+                                subtitle:
+                                    Text(users[index]['phoneNumber']),
                               ),
                             ),
                           ],
@@ -113,6 +127,8 @@ class GroupUsersSreen extends ConsumerWidget {
               },
             ),
           ),
+           if (!showGroupUsers)
+             SelectContactsScreen(),
         ],
       ),
     );
